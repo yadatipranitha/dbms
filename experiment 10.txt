@@ -1,0 +1,69 @@
+mysql> use faculty;
+Database changed
+mysql> create view faculty_view as select faculty_name,gender from faculty;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from faculty_view;
++--------------+--------+
+| faculty_name | gender |
++--------------+--------+
+| pavi         | f      |
++--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> create index faculty_identifier on faculty(faculty_identifier);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from faculty;
++---------+------------+---------------------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name            | Seq_in_index | Column_name        | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+---------------------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| faculty |          0 | PRIMARY             |            1 | faculty_identifier | A         |           1 |     NULL | NULL   |      | BTREE      |         |               |
+| faculty |          0 | faculty_name_unique |            1 | first_name         | A         |           1 |     NULL | NULL   | YES  | BTREE      |         |               |
+| faculty |          1 | faculty_identifier  |            1 | faculty_identifier | A         |           1 |     NULL | NULL   |      | BTREE      |         |               |
++---------+------------+---------------------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0.00 sec)
+mysql> \c
+mysql> create database employee;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| agent              |
+| customer           |
+| employee           |
+| faculty            |
+| mysql              |
+| performance_schema |
+| product            |
+| test               |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use employee;
+Database changed
+mysql> create table employee(emp_no int(3) auto_increment primary key,emp_name varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into employee(emp_name) values ('charan');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee(emp_name) values ('krishna');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into employee(emp_name) values ('raj');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++--------+----------+
+| emp_no | emp_name |
++--------+----------+
+|      1 | charan   |
+|      2 | krishna  |
+|      3 | raj      |
++--------+----------+
+3 rows in set (0.00 sec)
